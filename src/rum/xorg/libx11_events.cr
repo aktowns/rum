@@ -417,6 +417,15 @@ module Rum::Xorg
       minor_code   : UInt8
     end
 
+    alias XorgEvents = ( XAnyEvent | XKeyEvent | XButtonEvent | XMotionEvent | XCrossingEvent |
+                         XFocusChangeEvent | XExposeEvent | XGraphicsExposeEvent | XNoExposeEvent |
+                         XVisibilityEvent | XCreateWindowEvent | XDestroyWindowEvent | XUnmapEvent |
+                         XMapEvent | XMapRequestEvent | XReparentEvent | XConfigureEvent | XGravityEvent |
+                         XResizeRequestEvent | XConfigureRequestEvent | XCirculateEvent | XCirculateRequestEvent |
+                         XPropertyEvent | XSelectionClearEvent | XSelectionRequestEvent | XSelectionEvent |
+                         XColormapEvent | XClientMessageEvent | XMappingEvent | XErrorEvent | XKeymapEvent |
+                         XGenericEvent | XGenericEventCookie )
+
     union XEvent
       type              : Int32
     	xany              : XAnyEvent
