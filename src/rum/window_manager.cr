@@ -1,5 +1,5 @@
-require "./xorg/constants"
-require "./xorg/libx11"
+require "../xorg/constants"
+require "../xorg/libx11"
 
 require "./window"
 require "./event_manager"
@@ -18,35 +18,33 @@ module Rum
       @windows = get_windows
       @windows.each{|window|window.set_frame}
 
-      @event_manager = EventManager.instance(@display)
-      @event_manager.on_create_notify(-> (e: LibX11Events::XCreateWindowEvent) {
-        p e
-        puts "created a new window"
-      })
+      @event_manager = EventManager.new(@display)
+      # @event_manager.on_create_notify(-> (e: LibX11Events::XCreateWindowEvent) {
+      #   p e
+      #   puts "created a new window"
+      # })
       # @event_manager.on_map_request(-> (e: LibX11Events::XMapRequestEvent) {
       #   p e
       #   LibX11.map_window(e.display, e.window)
       # })
-      @event_manager.on_configure_request(-> (e: LibX11Events::XConfigureRequestEvent) {
-        changes = LibX11::XWindowChanges.new()
-        changes.x = e.x
-        changes.y = e.y
-        changes.width = e.width
-        changes.height = e.height
-        changes.border_width = e.border_width
-        changes.sibling = e.above
-        changes.stack_mode = e.detail
+      # @event_manager.on_configure_request(-> (e: LibX11Events::XConfigureRequestEvent) {
+      #   changes = LibX11::XWindowChanges.new()
+      #   changes.x = e.x
+      #   changes.y = e.y
+      #   changes.width = e.width
+      #   changes.height = e.height
+      #   changes.border_width = e.border_width
+      #   changes.sibling = e.above
+      #   changes.stack_mode = e.detail
+      #
+      #   LibX11.configure_window(e.display, e.window, UInt32.cast(e.value_mask), pointerof(changes))
+      # })
+      # @event_manager.on_button_press(-> (e: LibX11Events::XButtonPressedEvent) {
+      #   LibX11.raise_window(e.display, e.window)
+      # })
 
-        LibX11.configure_window(e.display, e.window, UInt32.cast(e.value_mask), pointerof(changes))
-      })
-      @event_manager.on_button_press(-> (e: LibX11Events::XButtonPressedEvent) {
-        LibX11.raise_window(e.display, e.window)
-      })
-
-      Thread.new do
-        puts "Spawning background event loop thread"
-        @event_manager.event_loop
-      end
+      puts "Spawning background event loop thread"
+      @event_manager.start
     end
 
     def run_loop

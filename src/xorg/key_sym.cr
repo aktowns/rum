@@ -1,4 +1,4 @@
-module Rum::Xorg::KeySym
+module Xorg::KeySym
   alias KeySymT                  = UInt64
 
   XK_VoidSymbol                  = KeySymT.cast(0xffffff) # Void symbol

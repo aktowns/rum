@@ -2,7 +2,7 @@ require "./types"
 require "./libx11_events"
 require "./key_sym"
 
-module Rum::Xorg
+module Xorg
   include Types
   include KeySym
 
@@ -19,26 +19,26 @@ module Rum::Xorg
     end
 
     struct Screen
-    	ext_data        : Void*
+      ext_data        : Void*
       display         : Display*
-    	root            : Window
-    	width           : Int32
+      root            : Window
+      width           : Int32
       height          : Int32
-    	mwidth          : Int32
+      mwidth          : Int32
       mheight         : Int32
-    	ndepths         : Int32
-    	depths          : Void*
-    	root_depth      : Int32
-    	root_visual     : Void*
-    	default_gc      : Void*
-    	cmap            : Colormap
-    	white_pixel     : ULong
-    	black_pixel     : ULong
-    	max_maps        : Int32
+      ndepths         : Int32
+      depths          : Void*
+      root_depth      : Int32
+      root_visual     : Void*
+      default_gc      : Void*
+      cmap            : Colormap
+      white_pixel     : ULong
+      black_pixel     : ULong
+      max_maps        : Int32
       min_maps        : Int32
-    	backing_store   : Int32
-    	save_unders     : Bool
-    	root_input_mask : Long
+      backing_store   : Int32
+      save_unders     : Bool
+      root_input_mask : Long
     end
 
     struct XWindowAttributes

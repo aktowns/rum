@@ -1,4 +1,4 @@
-module Rum::Xorg::Types
+module Xorg::Types
   ifdef x86_64
     alias Long   = Int64
     alias ULong  = UInt64

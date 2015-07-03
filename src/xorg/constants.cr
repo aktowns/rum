@@ -1,4 +1,4 @@
-module Rum::Xorg::Constants
+module Xorg::Constants
   # XORG RESERVED RESOURCE AND CONSTANT DEFINITIONS
   None            = UInt64.cast(0)
   ParentRelative  = 1 # background pixmap in CreateWindow and ChangeWindowAttributes

@@ -1,6 +1,6 @@
 require "./types"
 
-module Rum::Xorg
+module Xorg
   include Types
 
   @[Link("X11")]
